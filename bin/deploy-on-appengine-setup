@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+base_path = ARGV[0] || "."
+
