@@ -10,7 +10,7 @@ class AppEngine::Admin::GemBundler
   end
 
   def run_bundle(inst = "", system_cmd = true)
-    cmd = "rvm jruby do bash -c '#{bundler_envs} bundle #{inst}'"
+    cmd = "cd #{@root}; rvm jruby do bash -c '#{bundler_envs} bundle #{inst}'"
     output = system_cmd ? system(cmd) : `#{cmd}`
     output
   end

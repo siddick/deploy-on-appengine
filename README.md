@@ -1,24 +1,32 @@
 # Deploy::On::Appengine
 
-TODO: Write a gem description
+To support latest bundler on appengine.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Install gem and jruby:
 
-    gem 'deploy-on-appengine'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install deploy-on-appengine
+    $ gem install deploy-on-appengine [ not yet published ]
+    $ rvm install jruby
 
 ## Usage
 
-TODO: Write usage instructions here
+Create rails application:
+
+    $ rails new https://raw.github.com/siddick/deploy-on-appengine/master/templates/rails3.rb --old-style-hash
+    $ rails g scaffold posts title:string content:text
+    $ rake db:migrate
+    $ rails s
+
+Support existing
+
+    $ cd project
+    $ deploy-on-appengine-setup
+
+To test on appengine enviornment and deploy:
+
+    $ dev_appserver --port=3000 . --jvm_flag=-Dappengine.user.timezone=UTC
+    $ appcfg update .
 
 ## Contributing
 

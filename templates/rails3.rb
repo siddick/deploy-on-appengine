@@ -1,3 +1,7 @@
+unless system("rvm jruby do nop < /dev/null")
+  exit
+end
+
 gsub_file   'Gemfile', /https:/, "http:"
 gsub_file   'Gemfile', /sqlite3.*$/, '\0, :platforms => :ruby'
 append_file 'Gemfile', <<-Gemfile
@@ -43,7 +47,7 @@ gsub_file   "config/environments/appengine.rb", /Application.configure do/ do |c
 EnvConfig
 end
 
-# run("gem install deploy-on-appengine")
+run("gem install deploy-on-appengine")
 
 create_file "lib/jruby_patch.rb", <<-RubyPatch
 class File
@@ -61,5 +65,4 @@ class File
 end
 RubyPatch
 
-
-run("appcfg generate_app .")
+run("appcfg generate_app .") unless ENV['LOCATION']
